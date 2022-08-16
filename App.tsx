@@ -27,6 +27,22 @@ import {
   ReloadInstructions,
 } from 'react-native/Libraries/NewAppScreen';
 
+
+import * as Sentry from '@sentry/react-native';
+
+Sentry.init({
+  dsn: 'https://2cc6ee6e11d04d74b74b9b2b653c1491@o1357066.ingest.sentry.io/6643601',
+  debug: true,
+  beforeSend: (e) => {
+    console.log('Event beforeSend:', e);
+    return e;
+  },
+  // This will be called with a boolean `didCallNativeInit` when the native SDK has been contacted.
+  onReady: ({didCallNativeInit}) => {
+    console.log('onReady called with didCallNativeInit:', didCallNativeInit);
+  },
+});
+
 const Section: React.FC<
   PropsWithChildren<{
     title: string;
