@@ -27,6 +27,7 @@ import {
 
 
 import * as Sentry from '@sentry/react-native';
+import { Navigation } from 'react-native-navigation';
 
 Sentry.init({
   dsn: 'https://2cc6ee6e11d04d74b74b9b2b653c1491@o1357066.ingest.sentry.io/6643601',
@@ -71,11 +72,27 @@ const Section: React.FC<
   );
 };
 
-const App = () => {
+const App = (props: { componentId: string }) => {
   const isDarkMode = useColorScheme() === 'dark';
 
   const backgroundStyle = {
     backgroundColor: isDarkMode ? Colors.darker : Colors.lighter,
+  };
+
+  const onThrowErrorButton = () => {throw new Error('This is a crash')};
+  const onSurpriseButton = () => {
+    Navigation.push(props.componentId, {
+      component: {
+        name: 'Surprise',
+        options: {
+          topBar: {
+            title: {
+              text: 'Surprise!'
+            }
+          }
+        }
+      }
+    });
   };
 
   return (
@@ -91,10 +108,18 @@ const App = () => {
           }}>
           <Section title="Let's crash">
             <Button
-              onPress={() => {throw new Error('This is a crash')}}
-              title="Throw an error"
+              onPress={onThrowErrorButton}
+              title="Throw an error!"
               color="#841584"
               accessibilityLabel="Throw an error to simulate an application error and send it to Sentry."
+            />
+          </Section>
+          <Section title="Curious?">
+            <Button
+              onPress={onSurpriseButton}
+              title="Open surprise!"
+              color="#841584"
+              accessibilityLabel="Open new screen on stack to test automatic Sentry performance monitoring."
             />
           </Section>
         </View>
