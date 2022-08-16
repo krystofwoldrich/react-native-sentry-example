@@ -6,10 +6,6 @@ import com.facebook.react.ReactRootView;
 
 public class MainActivity extends NavigationActivity {
 
-  
-
-  
-
   public static class MainActivityDelegate extends ReactActivityDelegate {
     public MainActivityDelegate(NavigationActivity activity, String mainComponentName) {
       super(activity, mainComponentName);
