@@ -40,6 +40,16 @@ Sentry.init({
   onReady: ({didCallNativeInit}) => {
     console.log('onReady called with didCallNativeInit:', didCallNativeInit);
   },
+  tracesSampleRate: 1,
+  integrations: [
+    new Sentry.ReactNativeTracing({
+      tracingOrigins: ["localhost", /^\//],
+      // Pass instrumentation to be used as `routingInstrumentation`
+      routingInstrumentation: new Sentry.ReactNativeNavigationInstrumentation(
+        Navigation,
+      )
+    }),
+  ],
 });
 
 const Section: React.FC<
