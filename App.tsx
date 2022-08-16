@@ -90,6 +90,7 @@ const App = (props: { componentId: string }) => {
   };
 
   const onThrowErrorButton = () => {throw new Error('This is a crash')};
+  const onNewCommitErrorButton = () => {throw new Error('This is a error from a new commit')};
   const onSurpriseButton = () => {
     Navigation.push(props.componentId, {
       component: {
@@ -120,6 +121,12 @@ const App = (props: { componentId: string }) => {
             <Button
               onPress={onThrowErrorButton}
               title="Throw an error!"
+              color="#841584"
+              accessibilityLabel="Throw an error to simulate an application error and send it to Sentry."
+            />
+            <Button
+              onPress={onNewCommitErrorButton}
+              title="Throw another error!"
               color="#841584"
               accessibilityLabel="Throw an error to simulate an application error and send it to Sentry."
             />
