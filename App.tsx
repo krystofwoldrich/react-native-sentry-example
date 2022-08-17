@@ -32,6 +32,8 @@ import { Navigation } from 'react-native-navigation';
 Sentry.init({
   dsn: 'https://2cc6ee6e11d04d74b74b9b2b653c1491@o1357066.ingest.sentry.io/6643601',
   debug: true,
+  release: 'react-native-js@0.4.0',
+  dist: 'mobile',
   beforeSend: (e) => {
     console.log('Event beforeSend:', e);
     return e;
