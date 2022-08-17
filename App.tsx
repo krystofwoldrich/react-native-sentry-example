@@ -132,6 +132,12 @@ const App = (props: { componentId: string }) => {
               color="#841584"
               accessibilityLabel="Throw an error to simulate an application error and send it to Sentry."
             />
+            <Button
+              onPress={onNewCommitErrorButton}
+              title="Throw one more error!"
+              color="#841584"
+              accessibilityLabel="Throw an error to simulate an application error and send it to Sentry."
+            />
           </Section>
           <Section title="Curious?">
             <Button
